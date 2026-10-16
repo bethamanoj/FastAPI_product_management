@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Product Store{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static',path='/style.css')}}">
+</head>
+<body>
+    <header class="navbar">
+        <a class="blank" href="/products">Product Store</a>
+        <nav>
+            <a href="/products">Products</a>
+            <a href="/products/add">Add Product</a>
+        </nav>
+    </header>    
+    <main class="container">
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <p>Product Management System</p>
+    </footer>
+</body>
+</html>

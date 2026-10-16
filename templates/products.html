@@ -1,0 +1,42 @@
+{% extends "home.html" %}
+{% block title %}All Products{% endblock %}
+{% block content %}
+<div class="page-heading">
+    <div>
+        <h1>Our Products</h1>
+        <p>Manage our product inventory</p>
+    </div>
+    <a class="btn" href="/products/add">Add Product</a>
+</div>
+<div class="product-grid">
+    {% for product in products %}
+    <div class="product-card">
+        <div class="product-image">
+            {% if product.image %}
+                <img src="{{url_for('static',path='/images/' ~ product.image) }}" alt="{{ product.name }}">
+            {% else %}
+                <div class="product-icon">📦</div>
+            {% endif %}
+        </div>
+        <h2>{{ product.name }}</h2>
+        <p class="description">
+            {{ product.description or "No description avaliable" }}
+        </p>
+        <p class="price">₹{{ "%.2f"|format(product.price) }}</p>
+        <p>Quantity: {{ product.quantity }}</p>
+        {% if product.quantity >0 %}
+            <span class="status avaliable">In stock</span>
+        {% else %}
+            <span class="status unavailable">Out of Stock</span>
+        {% endif %}
+        <form action="/products/delete/{{ product.id }}" method="post" onsubmit="return confirm('Delete this product?')">
+            <button class="delete-btn" type="submit">
+                Delete Product
+            </button>
+        </form>
+    </div>
+    {% else %}
+    <p>No products found. Add your product first!</p>
+    {% endfor %}
+</div>
+{% endblock %}
