@@ -4,10 +4,16 @@
 <div class="page-heading">
     <div>
         <h1>Our Products</h1>
-        <p>Manage our product inventory</p>
+        <p>Any Products one store</p>
+        <p>Mobiles-Accessories-Laptop</p>
     </div>
     <a class="btn" href="/products/add">Add Product</a>
 </div>
+<form action="/products" method="get" class="search-form">
+    <input type="text" name="search" placeholder="Search products by name" value="{{ search }}">
+    <button type="submit">Search</button>
+    <a href="/products">Clear</a>
+</form>
 <div class="product-grid">
     {% for product in products %}
     <div class="product-card">

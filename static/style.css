@@ -44,10 +44,39 @@ body{
 }
 h1{
     margin-bottom: 8px;
+    align-items: center;
 }
 .page-heading p,
 .form-card p{
     color: rgb(100, 116, 139);
+    align-items: center;
+}
+.search-form{
+    display: flex;
+    gap: 10px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+.search-form input{
+    flex: 1;
+    min-width: 180px;
+    padding: 12px;
+    border: 1px solid rgb(204, 204, 204);
+}
+.search-form button,
+.search-form a {
+    padding: 12px 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.search-form button{
+    background: rgb(37, 99, 235);
+    color: white;
+}
+.search-form a{
+    background: rgb(188, 194, 207);
+    color: rgb(16, 23, 39);
 }
 .product-grid{
     display: grid;

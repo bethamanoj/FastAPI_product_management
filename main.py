@@ -20,11 +20,15 @@ def home():
     return RedirectResponse(url='/products',status_code=303)
 
 @app.get('/products')
-def view_products(request : Request):
+def view_products(request : Request,search: str =""):
     connection = get_connection()
     cursor = connection.cursor(dictionary = True)
     try:
-        cursor.execute('SELECT * FROM products ORDER BY id DESC')
+        if search.strip():
+            sql = "SELECT * FROM products WHERE name LIKE %s ORDER BY id desc"
+            cursor.execute(sql,(f"%{search.strip()}%",))
+        else:
+            cursor.execute('SELECT * FROM products ORDER BY id DESC')
         products = cursor.fetchall()
     finally:
         cursor.close()
@@ -32,7 +36,10 @@ def view_products(request : Request):
     return templates.TemplateResponse(
         request = request,
         name = "products.html",
-        context = {'products':products}
+        context = {
+            'products':products,
+            "search" : search
+            }
     )
 
 @app.get('/products/add')
